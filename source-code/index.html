@@ -52,8 +52,14 @@
 <script>
 $(document).ready(function() {
     $.getJSON("/ingresses.json", function(data) {
+        const formattedData = data.map(item => {
+            return {
+                ...item,
+                host: `<a href="http://${item.host}" target="_blank">${item.host}</a>`
+            };
+        });
         const table = $("#ingressTable").DataTable({
-            data: data,
+            data: formattedData,
             columns: [
                 { data: 'name' },
                 { data: 'namespace' },
