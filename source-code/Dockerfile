@@ -4,8 +4,8 @@ FROM alpine:3.14
 RUN apk add --no-cache curl jq busybox-extras
 
 # Copy our scripts and web content into the container
-COPY list_ingress.sh /app/
-COPY index.html /app/
+COPY source-code/list_ingress.sh /app/
+COPY source-code/index.html /app/
 
 # Mark our script as executable
 RUN chmod +x /app/list_ingress.sh
