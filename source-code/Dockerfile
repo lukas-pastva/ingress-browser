@@ -14,4 +14,4 @@ RUN chmod +x /app/list_ingress.sh
 EXPOSE 80
 
 # Command to run our application
-CMD ["/bin/sh", "-c", "cd /app && httpd -f -p 80 -h /app && tail -f /dev/null"]
+CMD ["/bin/sh", "-c", "/app/list_ingress.sh && cd /app && httpd -f -p 80 -h /app && tail -f /dev/null"]
