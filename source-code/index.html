@@ -65,11 +65,9 @@ $(document).ready(function() {
                 { data: 'namespace' },
                 { data: 'host' }
             ],
-            order: [[0, 'asc']]
+            order: [[0, 'asc']],
+            pageLength: 50
         });
-    });
-    $('#ingressTable').DataTable({
-        "pageLength": 50
     });
 });
 </script>
