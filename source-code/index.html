@@ -36,7 +36,7 @@
 </head>
 <body>
 
-<h1>Kubernetes Ingress Routes</h1>
+<h1 id="domainName">Kubernetes Ingress Routes</h1>
 
 <table id="ingressTable" class="display">
     <thead>
@@ -51,11 +51,13 @@
 
 <script>
 $(document).ready(function() {
+    $("#domainName").text(window.location.hostname);
+
     $.getJSON("/ingresses.json", function(data) {
         const formattedData = data.map(item => {
             return {
                 ...item,
-                host: `<a href="http://${item.host}" target="_blank">${item.host}</a>`
+                host: `<a href="https://${item.host}" target="_blank">${item.host}</a>`
             };
         });
         const table = $("#ingressTable").DataTable({
