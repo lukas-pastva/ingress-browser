@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,6 +79,7 @@
                     };
                 });
                 const table = $("#ingressTable").DataTable({
+                    width: '80%',  // add this line
                     data: formattedData,
                     columns: [
                         { data: 'name' },
@@ -87,6 +89,7 @@
                     order: [[0, 'asc']],
                     pageLength: 50
                 });
+
             });
         });
 
