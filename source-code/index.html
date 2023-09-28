@@ -39,6 +39,8 @@
             color: #2c3e50;
             z-index: 1;
             position: relative;
+            width: 80%;  /* setting the table width to 80% */
+            margin: 0 auto;  /* center the table */
         }
 
         /* Setting the canvas for the 3D effect behind the content */
@@ -99,8 +101,8 @@
 
         // Creating multiple cubes
         for (let i = 0; i < 50; i++) {
-            let geometry = new THREE.BoxGeometry(1, 1, 1);
-            let material = new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff });
+            let geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);  // making the cubes smaller
+            let material = new THREE.MeshBasicMaterial({ color: 0x808080 + Math.random() * 0x7F7F7F });  // shades of grey
             let cube = new THREE.Mesh(geometry, material);
             cube.position.x = (Math.random() - 0.5) * 10;
             cube.position.y = (Math.random() - 0.5) * 10;
