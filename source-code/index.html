@@ -75,7 +75,7 @@
                 const formattedData = data.map(item => {
                     return {
                         ...item,
-                        host: `<a href="https://${item.host}/" target="_blank">${item.host}/</a>`
+                        host: `<a href="https://${item.host}${item.path}" target="_blank">${item.host}${item.path}</a>`
                     };
                 });
                 const table = $("#ingressTable").DataTable({
