@@ -25,6 +25,7 @@
             margin: 0;
             overflow: hidden;
             position: relative;
+            background-color: #f5f5f5; /* Smooth grey background */
         }
 
         h1 {
@@ -39,15 +40,16 @@
             color: #2c3e50;
             z-index: 1;
             position: relative;
-            width: 80%;  /* setting the table width to 80% */
-            margin: 0 auto;  /* center the table */
+            width: 80%;
+            margin: 0 auto;
         }
 
-        /* Setting the canvas for the 3D effect behind the content */
+        /* Adjust or remove the canvas style as needed */
         canvas {
             position: absolute;
             top: 0;
             left: 0;
+            opacity: 0.5; /* Reduce opacity for less distraction */
         }
     </style>
 </head>
