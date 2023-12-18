@@ -1,8 +1,8 @@
 #!/bin/sh
 
 TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-CA_CERT="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-API_SERVER="https://kubernetes.default.svc.cluster.local"
+CACERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+APISERVER=https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT
 
 # Fetch Nginx Ingress resources from all namespaces
 if [ -z "$FILTER_PATTERN" ]; then
