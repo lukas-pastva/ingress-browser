@@ -72,7 +72,7 @@
         $(document).ready(function() {
             $("#domainName").text(window.location.hostname);
 
-            $.getJSON("/ingresses.json", function(data) {
+            $.getJSON("http://localhost:8080/ingresses.json", function(data) {
                 const formattedData = data.map(item => {
                     return {
                         ...item,
