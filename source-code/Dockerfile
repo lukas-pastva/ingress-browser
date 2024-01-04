@@ -13,5 +13,5 @@ RUN chmod +x /app/list_ingress.sh
 # Expose port 80 for our web server
 EXPOSE 80
 
-# Command to run our application
-CMD ["/bin/sh", "-c", "/app/list_ingress.sh && cd /app && httpd -f -p 80 -h /app && tail -f /dev/null"]
+# Command to run our application - updated to include symbolic link creation
+CMD ["/bin/sh", "-c", "/app/list_ingress.sh && ln -sf /tmp/ingresses.json /app/ingresses.json && cd /app && httpd -f -p 80 -h /app && tail -f /dev/null"]
