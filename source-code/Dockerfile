@@ -1,17 +1,24 @@
+# Use a Node.js base image
 FROM node:14
 
-# Create app directory
+# Create app directory in the container
 WORKDIR /app
 
 # Install app dependencies
-COPY package*.json ./
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY source-code/package*.json ./
+
+# Install dependencies in the container
 RUN npm install express
 
-# Copy app source code
-COPY ./source-code/ .
+# Copy the Node.js server script and other necessary files into the container
+COPY source-code/server.js ./
+COPY source-code/package.json ./
+COPY source-code/list_ingress.sh ./list_ingress.sh
+COPY source-code/public/ ./public/
 
-# Expose port 8080
+RUN chmod +x ./list_ingress.sh
+
 EXPOSE 8080
 
-# Command to run our application
 CMD [ "npm", "start" ]
