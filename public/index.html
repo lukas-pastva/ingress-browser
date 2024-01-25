@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +14,7 @@
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
-    <!-- Three.js for 4D cubes animation -->
+    <!-- Three.js for 3D cubes animation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Inline styles for the page -->
@@ -25,7 +24,7 @@
             margin: 0;
             overflow: hidden;
             position: relative;
-            background-color: #f5f5f5; /* Smooth grey background */
+            background-color: #f5f5f5;
         }
 
         h1 {
@@ -44,12 +43,11 @@
             margin: 0 auto;
         }
 
-        /* Adjust or remove the canvas style as needed */
         canvas {
             position: absolute;
             top: 0;
             left: 0;
-            opacity: 0.5; /* Reduce opacity for less distraction */
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -69,32 +67,32 @@
 </table>
 
 <script>
-        $(document).ready(function() {
-            $("#domainName").text(window.location.hostname);
+    $(document).ready(function() {
+        $("#domainName").text(window.location.hostname);
 
-            $.getJSON("http://localhost:8080/ingresses.json", function(data) {
-                const formattedData = data.map(item => {
-                    return {
-                        ...item,
-                        host: `<a href="https://${item.host}${item.path}" target="_blank">${item.host}${item.path}</a>`
-                    };
-                });
-                const table = $("#ingressTable").DataTable({
-                    width: '80%',  // add this line
-                    data: formattedData,
-                    columns: [
-                        { data: 'name' },
-                        { data: 'namespace' },
-                        { data: 'host' }
-                    ],
-                    order: [[0, 'asc']],
-                    pageLength: 50
-                });
-
+        // Fetch data from the Node.js server
+        $.getJSON("/ingresses.json", function(data) {
+            const formattedData = data.map(item => {
+                return {
+                    ...item,
+                    host: `<a href="https://${item.host}${item.path}" target="_blank">${item.host}${item.path}</a>`
+                };
+            });
+            $("#ingressTable").DataTable({
+                width: '80%',
+                data: formattedData,
+                columns: [
+                    { data: 'name' },
+                    { data: 'namespace' },
+                    { data: 'host' }
+                ],
+                order: [[0, 'asc']],
+                pageLength: 50
             });
         });
+    });
 
-        // Three.js code for spinning cubes
+    // Three.js code for spinning cubes
         let scene = new THREE.Scene();
         let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
