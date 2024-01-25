@@ -9,16 +9,21 @@ WORKDIR /app
 COPY source-code/package*.json ./
 
 # Install dependencies in the container
-RUN npm install express
+RUN npm install
+
+# Install jq and other dependencies required by your script
+RUN apt-get update && apt-get install -y jq curl
 
 # Copy the Node.js server script and other necessary files into the container
 COPY source-code/server.js ./
-COPY source-code/package.json ./
 COPY source-code/list_ingress.sh ./list_ingress.sh
 COPY source-code/public/ ./public/
 
+# Set permissions for the shell script
 RUN chmod +x ./list_ingress.sh
 
+# Expose the port the app runs on
 EXPOSE 8080
 
+# Command to run the app
 CMD [ "npm", "start" ]
